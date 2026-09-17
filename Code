@@ -1,0 +1,36 @@
+import pandas as pd
+customers = pd.read_csv("customers.csv")
+orders = pd.read_csv("orders.csv")
+
+print("Customers Dataset:")
+print(customers)
+
+print("\nOrders Dataset:")
+print(orders)
+merged_df = pd.merge(customers, orders, on="Customer_ID")
+
+print("\nMerged Dataset:")
+print(merged_df)
+
+inner_df = pd.merge(customers, orders, on="Customer_ID", how="inner")
+
+print("\nInner Merge:")
+print(inner_df)
+
+left_df = pd.merge(customers, orders, on="Customer_ID", how="left")
+
+print("\nLeft Merge:")
+print(left_df)
+
+concat_df = pd.concat([customers, orders], axis=0)
+
+print("\nConcatenated Dataset:")
+print(concat_df)
+side_concat = pd.concat(
+    [customers.reset_index(drop=True),
+     orders.reset_index(drop=True)],
+    axis=1
+)
+
+print("\nSide-by-Side Concatenation:")
+print(side_concat)
